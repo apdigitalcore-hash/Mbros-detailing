@@ -97,7 +97,17 @@ export function Footer() {
           <p>
             © {year} {business.name}
           </p>
-          <p>Mobile detailing, serving Maple Ridge to Vancouver</p>
+          <p>
+            Website by{" "}
+            <a
+              href={business.builtBy.url}
+              target="_blank"
+              rel="noopener"
+              className="link hover:text-paper"
+            >
+              {business.builtBy.name}
+            </a>
+          </p>
         </div>
       </div>
     </footer>

@@ -30,6 +30,8 @@ export const business = {
   ga4Id: "" as string,
   /** Google Search Console HTML-tag verification token. */
   gscVerification: "" as string,
+  /** Credit link in the footer. */
+  builtBy: { name: "AP Digital", url: "https://ap-digital.ca" },
 } as const;
 
 export const processSteps = [
