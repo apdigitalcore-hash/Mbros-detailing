@@ -248,8 +248,8 @@ function Home() {
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-4">
             <SectionHead id="ba-h" title="Before and after">
-              Drag the slider. This is what hot-water extraction pulls out of a seat that looked
-              fine.
+              Drag the slider to see what hot-water extraction does to a stained seat. Example
+              photos for now; our own job photos are on the way.
             </SectionHead>
             <Link to="/gallery" className="link mt-6 inline-block font-medium">
               More in the gallery

@@ -72,7 +72,7 @@ export const Route = createFileRoute("/gallery")({
     seo({
       title: "Before & After Detailing Gallery | M BROS Auto Detailing",
       description:
-        "Before and after photos of mobile detailing jobs from Maple Ridge to Vancouver: interior extraction, paint decontamination, wheels, headlights and more.",
+        "Before and after examples of mobile detailing from Maple Ridge to Vancouver: interior extraction, paint decontamination, wheels, headlights and more.",
       path: "/gallery",
       jsonLd: [breadcrumbSchema(crumbs)],
     }),
@@ -84,8 +84,8 @@ function Gallery() {
     <>
       <PageHero crumbs={crumbs} title="Before and after">
         <p className="muted">
-          Real cars in real driveways. Drag each slider to compare. We add new jobs as we finish
-          them.
+          What each service does, shown with example photos. Drag each slider to compare. We're
+          replacing these with photos from our own jobs as we finish them.
         </p>
       </PageHero>
       <Section className="!pt-0">
