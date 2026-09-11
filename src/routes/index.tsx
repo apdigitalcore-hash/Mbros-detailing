@@ -207,6 +207,8 @@ function Home() {
             className="lg:col-span-8"
             before="[PHOTO: rear seat with ground-in stains, before]"
             after="[PHOTO: the same seat after hot-water extraction]"
+            beforeSrc={seatBefore}
+            afterSrc={seatAfter}
             caption="Interior Deep Restoration"
           />
         </div>
