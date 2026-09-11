@@ -3,11 +3,9 @@ import { business } from "@/data/business";
 import { servicePages } from "@/data/services";
 import { A } from "@/components/site/A";
 import { CityList, CtaBand, PageHero } from "@/components/site/Blocks";
-import { Photo } from "@/components/site/Photo";
 import { Section, SectionHead } from "@/components/site/Section";
 import { breadcrumbSchema } from "@/lib/schema";
 import { seo } from "@/lib/seo";
-import brothersImg from "@/assets/gallery/brothers.jpg";
 
 const crumbs = [
   { name: "Home", path: "/" },
@@ -40,13 +38,6 @@ function About() {
       <PageHero
         crumbs={crumbs}
         title="About M BROS Auto Detailing"
-        aside={
-          <Photo
-            label="[PHOTO: the brothers working in a customer's driveway]"
-            src={brothersImg}
-            className="aspect-[4/5] w-full"
-          />
-        }
       >
         <p>
           M BROS is two brothers based in Maple Ridge. We're fully mobile: there's no shop and no
