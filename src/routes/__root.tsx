@@ -11,26 +11,63 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { business } from "@/data/business";
+import { businessSchema } from "@/lib/schema";
+import { track } from "@/lib/track";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { MobileBar } from "@/components/site/MobileBar";
+import { servicePages } from "@/data/services";
+import { cities } from "@/data/cities";
+import { A } from "@/components/site/A";
+
+const FONTS =
+  "https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <section className="section-light py-20 md:py-28">
+      <div className="wrap">
+        <h1 className="h-display text-[clamp(2.2rem,4.8vw,3.7rem)]">We couldn't find that page.</h1>
+        <p className="muted mt-5 max-w-xl text-lg">
+          It may have moved. These are probably what you're after.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
+        <div className="mt-12 grid gap-10 md:grid-cols-2">
+          <div>
+            <h2 className="h3 mb-3">Services</h2>
+            <ul className="space-y-1.5">
+              {servicePages.map((s) => (
+                <li key={s.slug}>
+                  <A href={s.path} className="link">
+                    {s.name}
+                  </A>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 className="h3 mb-3">Areas</h2>
+            <ul className="space-y-1.5">
+              {cities.map((c) => (
+                <li key={c.slug}>
+                  <A href={c.path} className="link">
+                    Mobile detailing in {c.name}
+                  </A>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="mt-12 flex flex-wrap gap-3">
+          <Link to="/" className="btn btn-primary">
+            Go to the home page
+          </Link>
+          <Link to="/contact" className="btn btn-secondary">
+            Get a quote
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -42,58 +79,70 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+    <section className="section-light py-24">
+      <div className="wrap">
+        <h1 className="h-display text-[clamp(2.2rem,4.8vw,3.4rem)]">This page didn't load.</h1>
+        <p className="muted mt-5 max-w-xl text-lg">
+          Something went wrong on our end. Try again, or call us on {business.phoneDisplay}.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-8 flex flex-wrap gap-3">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="btn btn-primary"
           >
             Try again
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
+          <a href="/" className="btn btn-secondary">
+            Home
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
+  head: () => {
+    // head() renders "script:ld+json" entries, but its meta type only models <meta> attributes.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const meta: any[] = [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
+      { title: business.name },
       {
-        rel: "stylesheet",
-        href: appCss,
+        name: "description",
+        content:
+          "Mobile car detailing from Maple Ridge to Vancouver. We come to your driveway or workplace, 7 days a week from 5 AM.",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-  }),
+      { name: "theme-color", content: "#f5f2ec" },
+      { "script:ld+json": businessSchema() },
+    ];
+    if (business.gscVerification) {
+      meta.push({ name: "google-site-verification", content: business.gscVerification });
+    }
+    const scripts = business.ga4Id
+      ? [
+          { src: `https://www.googletagmanager.com/gtag/js?id=${business.ga4Id}`, async: true },
+          {
+            children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${business.ga4Id}');`,
+          },
+        ]
+      : [];
+    return {
+      meta,
+      links: [
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        { rel: "stylesheet", href: FONTS },
+        { rel: "stylesheet", href: appCss },
+        { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      ],
+      scripts,
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -102,7 +151,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-CA">
       <head>
         <HeadContent />
       </head>
@@ -117,10 +166,32 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  // Conversion events for call and text taps anywhere on the site.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.('a[href^="tel:"], a[href^="sms:"]');
+      if (!a) return;
+      const href = a.getAttribute("href") ?? "";
+      track(href.startsWith("tel:") ? "click_call" : "click_text", {
+        page: window.location.pathname,
+      });
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <Header />
+      <main id="main">
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </main>
+      <Footer />
+      <MobileBar />
     </QueryClientProvider>
   );
 }

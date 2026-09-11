@@ -20,17 +20,33 @@ export const cities: City[] = [
     title: "Mobile Car Detailing Maple Ridge, BC | M BROS",
     description:
       "Mobile car detailing in Maple Ridge, BC. We come to your driveway in Albion, Silver Valley, Haney or Hammond. Open 7 days, 5 AM – 7 PM. Get a free quote.",
-    neighbourhoods: ["Albion", "Silver Valley", "Cottonwood", "Haney / downtown", "Hammond", "Thornhill"],
+    neighbourhoods: [
+      "Albion",
+      "Silver Valley",
+      "Cottonwood",
+      "Haney / downtown",
+      "Hammond",
+      "Thornhill",
+    ],
     intro: [
-      "Maple Ridge is home for us. We load the van here, and most mornings we are working a driveway within ten minutes of it. Mobile car detailing in Maple Ridge means you keep your keys and your morning — we set up outside your place and get to work.",
+      "Maple Ridge is home for us, so most driveways here are a short drive away. Mobile car detailing in Maple Ridge means you keep your keys and your morning — we set up outside your place and get to work.",
       "Half the cars we see here have been up a gravel road recently. Golden Ears trailheads, the Alouette Lake turnoff, a work site off 232nd — that mud dries into carpet and wheel wells and stays there until somebody pulls it out properly.",
     ],
     driving:
-      "Between the Haney Bypass, Lougheed and the long wet stretch from October to April, cars in Maple Ridge collect a film of road grime that a drive-through wash smears rather than removes. Add cedar sap in the older Hammond and Haney streets and pollen in Silver Valley in spring, and paint needs decontamination and a sealant, not just soap.",
+      "Between the Haney Bypass, Lougheed and the long wet stretch from October to April, cars in Maple Ridge collect a film of road grime that a drive-through wash smears rather than removes. Add cedar sap in the older Hammond and Haney streets and pollen in Silver Valley in spring, and paint needs decontamination and wax, not just soap.",
     faqs: [
-      { q: "Do you come up to Silver Valley and Thornhill?", a: "Yes. Silver Valley, Thornhill, Albion, Cottonwood, Hammond and downtown Haney are all part of our home area." },
-      { q: "Can you detail my car before I leave for work?", a: "That is the reason we start at 5 AM. Book an early slot and the car is usually done before your commute." },
-      { q: "Do I need to be home the whole time?", a: "No. We do a walkaround with you at the start, and we can text you when we are finished." },
+      {
+        q: "Do you come up to Silver Valley and Thornhill?",
+        a: "Yes. Silver Valley, Thornhill, Albion, Cottonwood, Hammond and downtown Haney are all part of our home area.",
+      },
+      {
+        q: "Can you detail my car before I leave for work?",
+        a: "That is the reason we start at 5 AM. Book an early slot and the car is usually done before your commute.",
+      },
+      {
+        q: "Do I need to be home the whole time?",
+        a: "No. We do a walkaround with you at the start, and we can text you when we are finished.",
+      },
     ],
     mapQuery: "Maple Ridge, BC",
     nearby: ["pitt-meadows", "port-coquitlam", "coquitlam"],
@@ -48,11 +64,20 @@ export const cities: City[] = [
       "A lot of Pitt Meadows driving is flat, fast and agricultural. Dust off the dyke roads in summer, field mud in winter, and river damp that keeps everything from drying out on its own.",
     ],
     driving:
-      "Cars parked outside near the river sit in damp air most of the year, which is how you end up with musty carpet and green film on the lower panels. Hot-water extraction inside and a sealant outside do more here than another wash does.",
+      "Cars parked outside near the river sit in damp air most of the year, which is how you end up with musty carpet and green film on the lower panels. Hot-water extraction inside and a coat of wax outside do more here than another wash does.",
     faqs: [
-      { q: "Do you service Osprey Village and South Bonson?", a: "Yes, both, plus the Harris Road area and the townhouse complexes off Ford Road." },
-      { q: "Can you work in a townhouse visitor stall?", a: "Usually yes, as long as we can park beside the car. Tell us in your quote request and we will confirm." },
-      { q: "Do you handle farm and job-site mud?", a: "Yes. Wheel wells, carpets and floor mats are a normal part of the job here." },
+      {
+        q: "Do you service Osprey Village and South Bonson?",
+        a: "Yes, both, plus the Harris Road area and the townhouse complexes off Ford Road.",
+      },
+      {
+        q: "Can you work in a townhouse visitor stall?",
+        a: "Usually yes, as long as we can park beside the car. Tell us in your quote request and we will confirm.",
+      },
+      {
+        q: "Do you handle farm and job-site mud?",
+        a: "Yes. Wheel wells, carpets and floor mats are a normal part of the job here.",
+      },
     ],
     mapQuery: "Pitt Meadows, BC",
     nearby: ["maple-ridge", "port-coquitlam", "coquitlam"],
@@ -72,8 +97,14 @@ export const cities: City[] = [
     driving:
       "The Lougheed and Mary Hill Bypass corridor throws up a constant spray of brine and truck grime in winter. It settles into the lower doors, the rear hatch and the wheel faces. Decontaminating the paint before waxing is what stops that film from coming back within a week.",
     faqs: [
-      { q: "Do you come to Citadel Heights?", a: "Yes, Citadel Heights, Riverwood, Mary Hill and Oxford Heights are all in our regular route." },
-      { q: "Can you clean out a work truck interior?", a: "Yes. Dust, sawdust and ground-in dirt in a truck cab are handled with vacuuming, steam and hot-water extraction." },
+      {
+        q: "Do you come to Citadel Heights?",
+        a: "Yes, Citadel Heights, Riverwood, Mary Hill and Oxford Heights are all part of our service area.",
+      },
+      {
+        q: "Can you clean out a work truck interior?",
+        a: "Yes. Dust, sawdust and ground-in dirt in a truck cab are handled with vacuuming, steam and hot-water extraction.",
+      },
       { q: "How early can you start in PoCo?", a: "From 5 AM, seven days a week." },
     ],
     mapQuery: "Port Coquitlam, BC",
@@ -94,9 +125,18 @@ export const cities: City[] = [
     driving:
       "Anyone driving up to Cypress or Seymour for a ski day comes home with salt and slush packed into the rocker panels, and it dries there. Higher-elevation Coquitlam streets also get sanded in winter, which is exactly the kind of grit that clay bar work removes before it gets dragged across paint.",
     faqs: [
-      { q: "Do you come to Burke Mountain?", a: "Yes. Burke Mountain and Westwood Plateau are both regular stops for us." },
-      { q: "Can you get winter salt off the underside of the doors?", a: "We clean the lower panels, rockers, wheels and wells by hand as part of exterior work." },
-      { q: "Do you detail in an underground parkade?", a: "Often yes, if there is room to work beside the car and the building allows it. Mention it in your quote request." },
+      {
+        q: "Do you come to Burke Mountain?",
+        a: "Yes. Burke Mountain and Westwood Plateau are both part of our service area.",
+      },
+      {
+        q: "Can you get winter salt off the underside of the doors?",
+        a: "We clean the lower panels, rockers, wheels and wells by hand as part of exterior work.",
+      },
+      {
+        q: "Do you detail in an underground parkade?",
+        a: "Mention it in your quote request. If there is room to work beside the car and the building allows it, we will confirm.",
+      },
     ],
     mapQuery: "Coquitlam, BC",
     nearby: ["port-coquitlam", "port-moody", "burnaby"],
@@ -114,11 +154,20 @@ export const cities: City[] = [
       "Between Rocky Point, the trails and the dog-friendly streets, a lot of Port Moody interiors see sand, wet paws and hair on a weekly basis.",
     ],
     driving:
-      "Heavy tree cover over Heritage Mountain and Ioco Road means sap, needles and pollen land on paint constantly, and moss-damp streets keep the underside wet. Sap that sits through a warm week etches into clear coat, so decontamination and a sealant matter more here than in drier parts of the region.",
+      "Heavy tree cover over Heritage Mountain and Ioco Road means sap, needles and pollen land on paint constantly, and moss-damp streets keep the underside wet. Sap that sits through a warm week etches into clear coat, so decontamination and wax matter more here than in drier parts of the region.",
     faqs: [
-      { q: "Do you come out to Ioco and Heritage Mountain?", a: "Yes, along with Moody Centre, Newport Village and the Suter Brook area." },
-      { q: "Can you get sand and dog hair out after Rocky Point?", a: "Yes. Pet hair removal and hot-water extraction handle sand and hair worked into carpet." },
-      { q: "Can you remove tree sap from the paint?", a: "Clay bar decontamination is the step that lifts bonded sap. We follow it with wax or sealant." },
+      {
+        q: "Do you come out to Ioco and Heritage Mountain?",
+        a: "Yes, along with Moody Centre, Newport Village and the Suter Brook area.",
+      },
+      {
+        q: "Can you get sand and dog hair out after Rocky Point?",
+        a: "Yes. Pet hair removal and hot-water extraction handle sand and hair worked into carpet.",
+      },
+      {
+        q: "Can you remove tree sap from the paint?",
+        a: "Clay bar decontamination is the step that lifts bonded sap. We follow it with a long-lasting machine wax.",
+      },
     ],
     mapQuery: "Port Moody, BC",
     nearby: ["coquitlam", "port-coquitlam", "burnaby"],
@@ -138,9 +187,18 @@ export const cities: City[] = [
     driving:
       "Hwy 1 through Burnaby is where winter brine does its worst. It coats the back of the car, dries white, and gets baked on by the defroster and engine heat. Parkade dust does the rest, sitting on the paint as a fine grey film that clay bar work removes and a wash does not.",
     faqs: [
-      { q: "Can you detail my car at a Metrotown or Brentwood condo?", a: "Usually yes, in the visitor area or your stall if there is room to work. Tell us the building type when you request a quote." },
-      { q: "Do you cover Capitol Hill and Burnaby Heights?", a: "Yes, along with Edmonds, Metrotown and Brentwood." },
-      { q: "Can you detail before a lease return?", a: "Yes. A full detail before an inspection is one of the most common jobs we do in Burnaby." },
+      {
+        q: "Can you detail my car at a Metrotown or Brentwood condo?",
+        a: "Usually yes, in the visitor area or your stall if there is room to work. Tell us the building type when you request a quote.",
+      },
+      {
+        q: "Do you cover Capitol Hill and Burnaby Heights?",
+        a: "Yes, along with Edmonds, Metrotown and Brentwood.",
+      },
+      {
+        q: "Can you detail before a lease return?",
+        a: "Yes. Interior wear is what gets flagged at a lease return, and a lot of it is ground-in dirt that a Deep Full Detail removes.",
+      },
     ],
     mapQuery: "Burnaby, BC",
     nearby: ["new-westminster", "vancouver", "coquitlam"],
@@ -160,9 +218,18 @@ export const cities: City[] = [
     driving:
       "Sitting under mature trees means sap, leaf stain and bird mess landing on paint year-round, and those etch faster than road dirt does. On the Queensborough side, the Alex Fraser and Queensborough Bridge corridors throw up truck grime and winter brine that settles low on the body.",
     faqs: [
-      { q: "Do you detail in Queensborough?", a: "Yes, Queensborough, Sapperton, Uptown, Queens Park and the West End of New West." },
-      { q: "What if my street parking is tight?", a: "We work in tight spots regularly. If you can give us the space of an open door on one side, we can usually manage." },
-      { q: "Can you clean stained fabric seats in an older car?", a: "Hot-water extraction is the right tool for that. We can tell you honestly what will and will not lift." },
+      {
+        q: "Do you detail in Queensborough?",
+        a: "Yes, Queensborough, Sapperton, Uptown, Queens Park and the West End of New West.",
+      },
+      {
+        q: "What if my street parking is tight?",
+        a: "Tight spots are normal in New West. If you can give us the space of an open door on one side, we can usually manage.",
+      },
+      {
+        q: "Can you clean stained fabric seats in an older car?",
+        a: "Hot-water extraction is the right tool for that. We can tell you honestly what will and will not lift.",
+      },
     ],
     mapQuery: "New Westminster, BC",
     nearby: ["burnaby", "vancouver", "coquitlam"],
@@ -182,9 +249,18 @@ export const cities: City[] = [
     driving:
       "Beach sand from Kits and Jericho ends up in carpet, and salt air plus nine months of rain keeps the exterior permanently filmed over. Street-parked cars in Mount Pleasant and East Van collect brake dust and construction grit; Kerrisdale and Yaletown cars spend their lives in parkades and pick up a fine dust instead.",
     faqs: [
-      { q: "Can you detail a street-parked car in Kitsilano or East Van?", a: "Yes, as long as the spot is legal and we can work around the car. Let us know where it is parked in your quote request." },
-      { q: "Do you come downtown and to Yaletown?", a: "Yes, including building parking areas when the strata allows outside work." },
-      { q: "Can you get beach sand out of the carpet?", a: "Vacuuming pulls the loose sand, and hot-water extraction gets what has worked down into the fibres." },
+      {
+        q: "Can you detail a street-parked car in Kitsilano or East Van?",
+        a: "Yes, as long as the spot is legal and we can work around the car. Let us know where it is parked in your quote request.",
+      },
+      {
+        q: "Do you come downtown and to Yaletown?",
+        a: "Yes, including building parking areas when the strata allows outside work.",
+      },
+      {
+        q: "Can you get beach sand out of the carpet?",
+        a: "Vacuuming pulls the loose sand, and hot-water extraction gets what has worked down into the fibres.",
+      },
     ],
     mapQuery: "Vancouver, BC",
     nearby: ["burnaby", "new-westminster", "port-moody"],
