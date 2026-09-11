@@ -37,51 +37,21 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-type Row = {
-  key: string;
-  name: string;
-  blurb: string;
-  tier?: Tier | undefined;
-  from: string;
-  href: string;
-};
-
-const serviceRows: { group: string; rows: Row[] }[] = [
+/** Main services as cards, grouped. Add-ons render separately as a compact list. */
+const cardGroups = [
   {
     group: "Exterior",
-    rows: sizedServices
-      .filter((s) => s.group === "Exterior")
-      .map((s) => ({
-        key: s.id,
-        name: s.name,
-        blurb: s.blurb,
-        tier: s.tier,
-        from: formatFrom(s.prices.sedan),
-        href: s.page,
-      })),
+    intro: "Washing, paint protection, wheels and tires.",
+    href: "/services/exterior-detailing",
+    linkLabel: "About exterior detailing",
+    services: sizedServices.filter((s) => s.group === "Exterior"),
   },
   {
     group: "Interior",
-    rows: sizedServices
-      .filter((s) => s.group === "Interior")
-      .map((s) => ({
-        key: s.id,
-        name: s.name,
-        blurb: s.blurb,
-        tier: s.tier,
-        from: formatFrom(s.prices.sedan),
-        href: s.page,
-      })),
-  },
-  {
-    group: "Add-ons",
-    rows: addOns.map((a) => ({
-      key: a.id,
-      name: a.name,
-      blurb: a.blurb,
-      from: formatFrom(a.price),
-      href: a.page,
-    })),
+    intro: "Seats, carpet, dash, vents and glass.",
+    href: "/services/interior-detailing",
+    linkLabel: "About interior detailing",
+    services: sizedServices.filter((s) => s.group === "Interior"),
   },
 ];
 
@@ -208,24 +178,39 @@ function Home() {
           Every service has its starting price listed. Basic keeps a car that's in decent shape
           clean. Deep is for when it needs bringing back.
         </SectionHead>
-        <div className="mt-12 grid gap-12">
-          {serviceRows.map((g) => (
-            <div key={g.group} className="grid gap-4 md:grid-cols-12 md:gap-8">
-              <h3 className="h3 md:col-span-3 md:pt-4">{g.group}</h3>
-              <ul className="border-t md:col-span-9">
-                {g.rows.map((r) => (
-                  <li key={r.key} className="border-b">
+        <div className="mt-12 grid gap-14">
+          {cardGroups.map((g) => (
+            <div key={g.group} className="grid gap-6 lg:grid-cols-12 lg:gap-10">
+              <div className="lg:col-span-3">
+                <h3 className="h3">{g.group}</h3>
+                <p className="muted mt-2">{g.intro}</p>
+                <A href={g.href} className="link mt-3 inline-block text-[0.9375rem] font-medium">
+                  {g.linkLabel}
+                </A>
+              </div>
+              <ul className="grid gap-4 sm:grid-cols-2 lg:col-span-9">
+                {g.services.map((s) => (
+                  <li key={s.id}>
                     <A
-                      href={r.href}
-                      className="grid gap-1 rounded-md py-4 transition-colors hover:bg-paper sm:grid-cols-12 sm:items-baseline sm:gap-4 sm:px-3"
+                      href={s.page}
+                      className="group flex h-full flex-col rounded-xl border bg-paper p-5 transition-colors hover:border-[var(--line-strong)] sm:p-6"
                     >
-                      <span className="flex flex-wrap items-center gap-2 sm:col-span-5">
-                        <span className="font-semibold">{r.name}</span>
-                        {r.tier ? <TierBadge tier={r.tier} /> : null}
+                      <span className="flex items-start justify-between gap-4">
+                        <span className="text-[1.0625rem] font-semibold leading-snug">
+                          {s.name}
+                        </span>
+                        <TierBadge tier={s.tier} />
                       </span>
-                      <span className="muted sm:col-span-5">{r.blurb}</span>
-                      <span className="num font-semibold sm:col-span-2 sm:text-right">
-                        {r.from}
+                      <ul className="tick-list small mt-3 space-y-1">
+                        {s.includes.map((i) => (
+                          <li key={i}>{i}</li>
+                        ))}
+                      </ul>
+                      <span className="mt-auto flex items-baseline justify-between gap-4 pt-5">
+                        <span className="num font-semibold">{formatFrom(s.prices.sedan)}</span>
+                        <span className="small transition-colors group-hover:text-ink">
+                          Details
+                        </span>
                       </span>
                     </A>
                   </li>
@@ -233,6 +218,28 @@ function Home() {
               </ul>
             </div>
           ))}
+
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-3">
+              <h3 className="h3">Add-ons</h3>
+              <p className="muted mt-2">Add any of these to a visit.</p>
+            </div>
+            <ul className="grid rounded-xl border bg-paper px-5 sm:grid-cols-2 sm:gap-x-8 lg:col-span-9">
+              {addOns.map((a) => (
+                <li key={a.id} className="border-b last:border-b-0">
+                  <A
+                    href={a.page}
+                    className="flex items-baseline justify-between gap-4 py-4 hover:underline"
+                  >
+                    <span className="font-medium">{a.name}</span>
+                    <span className="num whitespace-nowrap font-semibold">
+                      {formatFrom(a.price)}
+                    </span>
+                  </A>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </Section>
 
