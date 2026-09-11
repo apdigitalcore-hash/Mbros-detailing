@@ -80,7 +80,7 @@ export function businessSchema() {
     email: business.email,
     priceRange: "$$",
     description:
-      "Mobile auto detailing run by two brothers from Maple Ridge. We come to your home or workplace from Maple Ridge to Vancouver, 7 days a week.",
+      "Mobile car detailing in Maple Ridge, Pitt Meadows, Port Coquitlam, Coquitlam, Port Moody, Burnaby, New Westminster and Vancouver. Interior and exterior detailing at your home or workplace, 7 days a week from 5 AM.",
     address: {
       "@type": "PostalAddress",
       addressLocality: business.baseCity,
