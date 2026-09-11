@@ -22,6 +22,7 @@ import { faqSchema } from "@/lib/schema";
 import { seo } from "@/lib/seo";
 import seatAfter from "@/assets/gallery/seat-after.jpg";
 import seatBefore from "@/assets/gallery/seat-before.jpg";
+import brothersImg from "@/assets/gallery/brothers.jpg";
 
 const homeFaqs = [generalFaqs[4]!, generalFaqs[2]!, generalFaqs[3]!, generalFaqs[0]!];
 
@@ -151,6 +152,7 @@ function Home() {
           <div className="lg:col-span-6">
             <Photo
               label="[PHOTO: the brothers working on a car in a customer's driveway, early morning]"
+              src={brothersImg}
               className="aspect-[4/3] w-full lg:aspect-[5/6]"
             />
           </div>

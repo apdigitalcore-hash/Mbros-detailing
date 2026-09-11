@@ -28,6 +28,30 @@ import {
 import { RichText } from "@/components/site/RichText";
 import { Section, SectionHead } from "@/components/site/Section";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
+import claybarImg from "@/assets/gallery/claybar.jpg";
+import engineAfter from "@/assets/gallery/engine-after.jpg";
+import fullDetailImg from "@/assets/gallery/full-detail.jpg";
+import headlightAfter from "@/assets/gallery/headlight-after.jpg";
+import hoodAfter from "@/assets/gallery/hood-after.jpg";
+import leatherImg from "@/assets/gallery/leather.jpg";
+import odourImg from "@/assets/gallery/odour.jpg";
+import pethairAfter from "@/assets/gallery/pethair-after.jpg";
+import seatAfter from "@/assets/gallery/seat-after.jpg";
+import wheelAfter from "@/assets/gallery/wheel-after.jpg";
+
+const servicePhotos: Record<string, string> = {
+  "full-detail": fullDetailImg,
+  "exterior-detailing": hoodAfter,
+  "interior-detailing": seatAfter,
+  "clay-bar-wax": claybarImg,
+  "wheel-tire-cleaning": wheelAfter,
+  "seat-carpet-shampoo": seatAfter,
+  "leather-cleaning": leatherImg,
+  "headlight-restoration": headlightAfter,
+  "engine-bay-detailing": engineAfter,
+  "pet-hair-removal": pethairAfter,
+  "odour-removal": odourImg,
+};
 import { seo } from "@/lib/seo";
 
 const crumbsFor = (page: ServicePage) => [
@@ -191,7 +215,9 @@ function ServiceRoute() {
       <PageHero
         crumbs={crumbsFor(page)}
         title={page.h1}
-        aside={<Photo label={page.photo} className="aspect-[4/3] w-full" />}
+        aside={
+          <Photo label={page.photo} src={servicePhotos[page.slug]} className="aspect-[4/3] w-full" />
+        }
       >
         <p>{first}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
