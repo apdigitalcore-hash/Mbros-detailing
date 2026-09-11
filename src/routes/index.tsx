@@ -5,6 +5,7 @@ import { generalFaqs } from "@/data/faqs";
 import {
   addOns,
   formatFrom,
+  formatRange,
   fullDetailPrices,
   fullDetails,
   sizedById,
@@ -15,14 +16,12 @@ import {
 import { A } from "@/components/site/A";
 import { BeforeAfter } from "@/components/site/BeforeAfter";
 import { CityList, CtaBand, FaqList, ProcessList } from "@/components/site/Blocks";
-import { Photo } from "@/components/site/Photo";
 import { PriceCard, PriceNote, PriceTable, SizeToggle, TierBadge } from "@/components/site/Pricing";
 import { Section, SectionHead } from "@/components/site/Section";
 import { faqSchema } from "@/lib/schema";
 import { seo } from "@/lib/seo";
 import seatAfter from "@/assets/gallery/seat-after.jpg";
 import seatBefore from "@/assets/gallery/seat-before.jpg";
-import brothersImg from "@/assets/gallery/brothers.jpg";
 
 const homeFaqs = [generalFaqs[4]!, generalFaqs[2]!, generalFaqs[3]!, generalFaqs[0]!];
 
@@ -111,50 +110,94 @@ const bcProblems = [
   },
 ];
 
+/** The four jobs people ask about most, priced for the chosen vehicle size. */
+const heroPrices = [
+  { name: "Hand Wash & Dry", detail: "Outside only", prices: sizedById("hand-wash")!.prices },
+  {
+    name: "Interior Clean",
+    detail: "Vacuum, wipe-down, glass",
+    prices: sizedById("interior-maintenance")!.prices,
+  },
+  {
+    name: "Basic Full Detail",
+    detail: "Hand wash + interior clean",
+    prices: fullDetailPrices(fullDetails[0]!),
+  },
+  {
+    name: "Deep Full Detail",
+    detail: "Clay, iron decon & wax + deep interior",
+    prices: fullDetailPrices(fullDetails[1]!),
+  },
+];
+
+function HeroPriceCard() {
+  const [size, setSize] = useState<SizeId>("sedan");
+  return (
+    <div className="rounded-xl border bg-[#fdfcf9] p-5 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_16px_40px_-16px_rgb(0_0_0/0.16)] sm:p-7">
+      <h2 className="h3">What it costs</h2>
+      <p className="small mt-1">Pick your vehicle. Prices in CAD, depending on condition.</p>
+      <div className="mt-5">
+        <SizeToggle size={size} onChange={setSize} stretch />
+      </div>
+      <dl className="mt-3">
+        {heroPrices.map((p) => (
+          <div
+            key={p.name}
+            className="flex items-baseline justify-between gap-4 border-b py-3.5 last:border-b-0"
+          >
+            <dt>
+              <span className="font-semibold">{p.name}</span>
+              <span className="small block">{p.detail}</span>
+            </dt>
+            <dd className="num whitespace-nowrap text-lg font-semibold">
+              {formatRange(p.prices[size])}
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <p className="small mt-2 border-t pt-4">
+        Add-ons like pet hair and headlights are extra.{" "}
+        <Link to="/pricing" className="link text-ink">
+          See every price
+        </Link>
+      </p>
+    </div>
+  );
+}
+
 function Home() {
   const [size, setSize] = useState<SizeId>("sedan");
   const basic = sizedById("interior-maintenance")!;
   const deep = sizedById("interior-deep")!;
-  const washFrom = sizedById("hand-wash")!.prices.sedan.min;
-  const fullFrom = fullDetailPrices(fullDetails[0]!).sedan.min;
 
   return (
     <>
       {/* Hero */}
-      <section className="section-light pb-16 pt-10 md:pb-24 md:pt-16">
-        <div className="wrap grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
-          <div className="lg:col-span-6">
-            <h1 className="h-display text-[clamp(2.4rem,5.2vw,4.1rem)]">
-              Mobile car detailing, from Maple Ridge to Vancouver.
+      <section className="section-light border-b pb-14 pt-10 md:pb-20 md:pt-16">
+        <div className="wrap grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
+          <div className="lg:col-span-7">
+            <h1 className="h-display text-[clamp(2.3rem,4.6vw,3.6rem)]">
+              Mobile car detailing, done right in your driveway.
             </h1>
-            <p className="mt-6 max-w-xl text-lg md:text-xl">
-              We're two brothers from Maple Ridge. We come to your driveway or workplace and detail
-              your car right there, anywhere from Pitt Meadows and the Tri-Cities to Burnaby, New
-              West and Vancouver.
+            <p className="muted mt-5 max-w-xl text-lg md:text-xl md:leading-relaxed">
+              We're two brothers from Maple Ridge. Pick a time and we'll come to your home or
+              workplace, anywhere from Pitt Meadows to Vancouver, and detail your car on the spot.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link to="/contact" className="btn btn-primary">
                 Get a quote
               </Link>
               <a href={business.phoneHref} className="btn btn-secondary">
-                Call {business.phoneDisplay}
+                Call or text {business.phoneDisplay}
               </a>
             </div>
-            <p className="muted mt-6 max-w-md">
-              Open every day, 5 AM to 7 PM. Hand washes start at ${washFrom} and full details at $
-              {fullFrom}.{" "}
-              <Link to="/pricing" className="link">
-                See all prices
-              </Link>
-              .
-            </p>
+            <ul className="tick-list mt-8 flex flex-col gap-1.5 text-[0.9375rem] sm:flex-row sm:flex-wrap sm:gap-x-8">
+              <li>Open every day, 5 AM to 7 PM</li>
+              <li>Maple Ridge to Vancouver, 8 cities</li>
+            </ul>
           </div>
-          <div className="lg:col-span-6">
-            <Photo
-              label="[PHOTO: the brothers working on a car in a customer's driveway, early morning]"
-              src={brothersImg}
-              className="aspect-[4/3] w-full lg:aspect-[5/6]"
-            />
+          <div className="lg:col-span-5">
+            <HeroPriceCard />
           </div>
         </div>
       </section>

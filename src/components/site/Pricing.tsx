@@ -18,12 +18,21 @@ export function TierBadge({ tier }: { tier: Tier }) {
   );
 }
 
-export function SizeToggle({ size, onChange }: { size: SizeId; onChange: (s: SizeId) => void }) {
+export function SizeToggle({
+  size,
+  onChange,
+  stretch = false,
+}: {
+  size: SizeId;
+  onChange: (s: SizeId) => void;
+  /** Fill the container's width with equal-width buttons. */
+  stretch?: boolean;
+}) {
   return (
     <div
       role="group"
       aria-label="Vehicle size"
-      className="inline-flex flex-wrap gap-1 rounded-lg border bg-paper p-1"
+      className={`gap-1 rounded-lg border bg-paper p-1 ${stretch ? "flex w-full" : "inline-flex flex-wrap"}`}
     >
       {vehicleSizes.map((s) => {
         const active = s.id === size;
@@ -33,9 +42,9 @@ export function SizeToggle({ size, onChange }: { size: SizeId; onChange: (s: Siz
             type="button"
             aria-pressed={active}
             onClick={() => onChange(s.id)}
-            className={`min-h-10 rounded-md px-3.5 text-[0.9375rem] font-medium transition-colors ${
-              active ? "bg-ink text-paper" : "text-ink hover:bg-paper-2"
-            }`}
+            className={`min-h-10 rounded-md font-medium transition-colors ${
+              stretch ? "flex-1 px-2 py-1.5 text-sm leading-tight" : "px-3.5 text-[0.9375rem]"
+            } ${active ? "bg-ink text-paper" : "text-ink hover:bg-paper-2"}`}
           >
             {s.label}
           </button>
