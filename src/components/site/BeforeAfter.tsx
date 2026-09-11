@@ -4,32 +4,61 @@ import { Photo } from "./Photo";
 type Props = {
   before: string;
   after: string;
+  /** Real photo URLs/imports. When both are set they replace the placeholders. */
+  beforeSrc?: string | undefined;
+  afterSrc?: string | undefined;
   caption?: string | undefined;
   className?: string;
 };
 
 /** Drag (or arrow-key) slider comparing a before and after shot. */
-export function BeforeAfter({ before, after, caption, className = "" }: Props) {
+export function BeforeAfter({ before, after, beforeSrc, afterSrc, caption, className = "" }: Props) {
   const [pos, setPos] = useState(50);
   const id = useId();
+  const alt = (s: string) => s.replace(/^\[PHOTO:\s*/i, "").replace(/\]$/, "");
 
   return (
     <figure className={className}>
       <div className="relative aspect-[16/10] w-full select-none overflow-hidden rounded-lg">
-        <Photo
-          label={after}
-          tone="dark"
-          className="absolute inset-0 !rounded-none"
-          labelStyle={{ left: "54%", textAlign: "right" }}
-        />
-        <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-          <Photo
-            label={before}
-            tone="darker"
-            className="absolute inset-0 !rounded-none"
-            labelStyle={{ right: "54%" }}
-          />
-        </div>
+        {beforeSrc && afterSrc ? (
+          <>
+            <img
+              src={afterSrc}
+              alt={alt(after)}
+              width={1280}
+              height={800}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+              <img
+                src={beforeSrc}
+                alt={alt(before)}
+                width={1280}
+                height={800}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <Photo
+              label={after}
+              tone="dark"
+              className="absolute inset-0 !rounded-none"
+              labelStyle={{ left: "54%", textAlign: "right" }}
+            />
+            <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+              <Photo
+                label={before}
+                tone="darker"
+                className="absolute inset-0 !rounded-none"
+                labelStyle={{ right: "54%" }}
+              />
+            </div>
+          </>
+        )}
 
         <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-ink/80 px-2.5 py-1 text-xs font-medium text-paper">
           Before

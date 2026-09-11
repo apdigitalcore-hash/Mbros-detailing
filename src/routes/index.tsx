@@ -20,6 +20,8 @@ import { PriceCard, PriceNote, PriceTable, SizeToggle, TierBadge } from "@/compo
 import { Section, SectionHead } from "@/components/site/Section";
 import { faqSchema } from "@/lib/schema";
 import { seo } from "@/lib/seo";
+import seatAfter from "@/assets/gallery/seat-after.jpg";
+import seatBefore from "@/assets/gallery/seat-before.jpg";
 
 const homeFaqs = [generalFaqs[4]!, generalFaqs[2]!, generalFaqs[3]!, generalFaqs[0]!];
 
