@@ -9,7 +9,7 @@ import { Photo } from "@/components/site/Photo";
 import { Section, SectionHead } from "@/components/site/Section";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { seo } from "@/lib/seo";
-import brothersImg from "@/assets/gallery/brothers.jpg";
+import drivewayImg from "@/assets/gallery/driveway-suv.jpg";
 
 const cityBy = (slug: string) => cities.find((c) => c.slug === slug);
 
@@ -51,8 +51,8 @@ function CityPage() {
         title={`Mobile car detailing in ${c.name}, BC`}
         aside={
           <Photo
-            label={`[PHOTO: M BROS working in a ${c.name} driveway]`}
-            src={brothersImg}
+            label="[PHOTO: freshly detailed grey SUV in a wet driveway, mountains behind]"
+            src={drivewayImg}
             className="aspect-[4/3] w-full"
           />
         }
