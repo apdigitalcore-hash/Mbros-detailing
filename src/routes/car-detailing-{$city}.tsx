@@ -9,6 +9,7 @@ import { Photo } from "@/components/site/Photo";
 import { Section, SectionHead } from "@/components/site/Section";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { seo } from "@/lib/seo";
+import brothersImg from "@/assets/gallery/brothers.jpg";
 
 const cityBy = (slug: string) => cities.find((c) => c.slug === slug);
 
