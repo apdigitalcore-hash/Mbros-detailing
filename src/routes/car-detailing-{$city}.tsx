@@ -51,6 +51,7 @@ function CityPage() {
         aside={
           <Photo
             label={`[PHOTO: M BROS working in a ${c.name} driveway]`}
+            src={brothersImg}
             className="aspect-[4/3] w-full"
           />
         }

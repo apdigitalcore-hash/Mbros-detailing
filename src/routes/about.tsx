@@ -42,6 +42,7 @@ function About() {
         aside={
           <Photo
             label="[PHOTO: the brothers working in a customer's driveway]"
+            src={brothersImg}
             className="aspect-[4/5] w-full"
           />
         }
