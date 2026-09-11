@@ -147,11 +147,11 @@ function Home() {
         <div className="wrap grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
           <div className="lg:col-span-7">
             <h1 className="h-display text-[clamp(2.3rem,4.6vw,3.6rem)]">
-              Mobile car detailing, done right in your driveway.
+              Mobile car detailing in Maple Ridge, Coquitlam, Burnaby and Vancouver
             </h1>
             <p className="muted mt-5 max-w-xl text-lg md:text-xl md:leading-relaxed">
-              We're two brothers from Maple Ridge. Pick a time and we'll come to your home or
-              workplace, anywhere from Pitt Meadows to Vancouver, and detail your car on the spot.
+              Interior and exterior car detailing at your home or workplace. We also cover Pitt
+              Meadows, Port Coquitlam, Port Moody and New Westminster, 7 days a week from 5 AM.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link to="/contact" className="btn btn-primary">
@@ -163,7 +163,7 @@ function Home() {
             </div>
             <ul className="tick-list mt-8 flex flex-col gap-1.5 text-[0.9375rem] sm:flex-row sm:flex-wrap sm:gap-x-8">
               <li>Open every day, 5 AM to 7 PM</li>
-              <li>Maple Ridge to Vancouver, 8 cities</li>
+              <li>Fully mobile, no shop to drop off at</li>
             </ul>
           </div>
           <div className="lg:col-span-5">
